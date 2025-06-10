@@ -9,6 +9,6 @@ namespace MusicRadio.BackEnd.Application.Services.Seguridad
 {
     public interface IServicioSeguridad
     {
-        Task<UsuarioVO> Autenticar(string nombreUsuario, string clave);
+        Task<ClienteVO> Autenticar(string nombreUsuario, string clave);
     }
 }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicRadio.BackEnd.Domain.Entities\MusicRadio.BackEnd.Domain.Entities.csproj" />
+    <ProjectReference Include="..\MusicRadio.BackEnd.Infrastructure.Framework\MusicRadio.BackEnd.Infrastructure.Framework.csproj" />
   </ItemGroup>
 
 </Project>
