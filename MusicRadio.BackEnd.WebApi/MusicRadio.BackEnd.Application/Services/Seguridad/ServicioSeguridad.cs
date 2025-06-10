@@ -9,9 +9,9 @@ namespace MusicRadio.BackEnd.Application.Services.Seguridad
 {
     public class ServicioSeguridad : IServicioSeguridad
     {
-        readonly IRepositorio<Cliente> _usuarioRepositorio;
+        readonly IRepositorio<ClienteVO> _usuarioRepositorio;
 
-        public ServicioSeguridad(IRepositorio<Cliente> usuarioRepositorio)
+        public ServicioSeguridad(IRepositorio<ClienteVO> usuarioRepositorio)
         {
 
         }

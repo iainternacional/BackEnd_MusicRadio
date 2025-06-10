@@ -8,7 +8,6 @@ namespace MusicRadio.BackEnd.Domain.Entities.Seguridad.ValueObjects
 {
     public class UsuarioVO
     {
-        public int IdUsuario { get; set; }
         public string CodUsuario { get; set; }
         public int IdTercero { get; set; }
         public string Identificacion { get; set; }
