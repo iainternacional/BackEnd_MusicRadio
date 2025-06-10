@@ -8,10 +8,10 @@ using MusicRadio.BackEnd.Infrastructure.Framework.RepositoryPattern;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure();
-builder.Services.AddScoped<IServicioSeguridad, ServicioSeguridad>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
+//builder.Services.AddApplication();
+//builder.Services.AddInfrastructure();
+//builder.Services.AddScoped<IServicioSeguridad, ServicioSeguridad>();
+//builder.Services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
