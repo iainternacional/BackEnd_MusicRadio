@@ -24,8 +24,6 @@ namespace MusicRadio.BackEnd.Infrastructure.Framework.RepositoryPattern
         IEnumerable<T> GetAll();
         IEnumerable<T> GetAllQueryable();
         int Commit();
-        void ExecuteSqlCommand(string procedureName, object parameteres);
         DataSet ExecuteStoreProcedure(string sqlQuery, List<DbParameter> parameters);
-        IEnumerable<TEntityVO> ExecuteStoreProcedure<TEntityVO>(string procedureName, object parameters);
     }
 }

@@ -1,4 +1,7 @@
 ﻿using MusicRadio.BackEnd.Domain.Entities.Seguridad;
+using MusicRadio.BackEnd.Domain.Entities.Seguridad.ValueObjects;
+using MusicRadio.BackEnd.Infrastructure.Framework.Instrumentation.Exceptions;
+using MusicRadio.BackEnd.Infrastructure.Framework.RepositoryPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +12,35 @@ namespace MusicRadio.BackEnd.Application.Services.Seguridad
 {
     public class ServicioSeguridad : IServicioSeguridad
     {
-        readonly IRepositorio<ClienteVO> _usuarioRepositorio;
+        readonly IRepository<ClienteVO> _usuarioRepositorio;
 
-        public ServicioSeguridad(IRepositorio<ClienteVO> usuarioRepositorio)
+        public ServicioSeguridad(IRepository<ClienteVO> usuarioRepositorio)
         {
+            this._usuarioRepositorio = usuarioRepositorio;
+        }
 
+        public Task<ClienteVO> Autenticar(string nombreUsuario, string clave)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(clave))
+                    throw new UsuarioNoExisteException();
+
+                var Usuario = new ClienteVO
+                {
+                    Nombreusu = nombreUsuario,
+                    Clave = clave
+                };
+
+                _usuarioRepositorio.Add(Usuario);
+
+                return Task.FromResult(Usuario);
+            }
+            catch (UsuarioNoExisteException ex)
+            {
+
+                throw;
+            }
         }
     }
 }

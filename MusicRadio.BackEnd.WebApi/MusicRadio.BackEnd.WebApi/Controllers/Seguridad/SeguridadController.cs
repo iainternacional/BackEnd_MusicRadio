@@ -10,6 +10,7 @@ using System.IdentityModel.Tokens.Jwt;
 using AutoMapper;
 using System.Net;
 using MusicRadio.BackEnd.Infrastructure.Framework.Instrumentation.Exceptions;
+using MusicRadio.BackEnd.Application.Services.Seguridad;
 
 namespace MusicRadio.BackEnd.WebApi.Controllers.Security
 {
@@ -29,8 +30,7 @@ namespace MusicRadio.BackEnd.WebApi.Controllers.Security
         }
 
         [HttpPost("autenticar")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody] AutenticarRequest usuarioRequest)
+        public async Task<IActionResult> autenticar([FromForm] AutenticarRequest usuarioRequest)
         {
             AutenticarResponse respuestaAutenticar;
             try
