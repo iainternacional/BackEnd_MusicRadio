@@ -2,32 +2,36 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar código') {
+        stage('Checkout') {
             steps {
-                echo 'Código ha sido clonado por Jenkins.'
+                checkout scm
             }
         }
 
-        stage('Construir imagen Docker') {
+        stage('Build Docker Image') {
             steps {
                 dir('MusicRadio.BackEnd.WebApi') {
                     script {
-                        dockerImage = docker.build('musicradio-backend:latest')
+                        sh 'docker build -t musicradio-backend:latest .'
                     }
                 }
             }
         }
 
-        stage('Correr contenedor') {
+        stage('Stop & Remove Existing Container') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name musicradio-container musicradio-backend:latest'
+                script {
+                    sh 'docker rm -f musicradio-container || true'
+                }
             }
         }
-    }
 
-    post {
-        always {
-            echo 'Pipeline terminado'
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh 'docker run -d -p 8081:8080 --name musicradio-container musicradio-backend:latest'
+                }
+            }
         }
     }
 }
